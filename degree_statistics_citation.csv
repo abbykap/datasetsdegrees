@@ -1,0 +1,8 @@
+filename,max_degree,min_degree,avg_degree
+cit-Patents.mtx,793,1,8.75229841939955
+coPapersCiteseer.mtx,1188,1,73.88457090729828
+citationCiteseer.mtx,1318,1,8.61578055457271
+as-735.mtx,1460,1,4.29255483472351
+coAuthorsCiteseer.mtx,1372,1,7.162889319021644
+cit-HepTh.mtx,2468,1,25.409218581202737
+cit-HepPh.mtx,846,1,24.406761998494762
