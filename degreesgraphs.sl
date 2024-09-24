@@ -6,8 +6,7 @@
 #SBATCH --nodes=1                   
 #SBATCH --time=02:00:00             
 #SBATCH --partition=batch         
-rm error*
-rm output*
+
 module load cray-python  
 module load py-pip
 pip install matplotlib pandas

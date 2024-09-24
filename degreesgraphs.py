@@ -115,7 +115,7 @@ def process_directory(main_directory):
 
 
 # Main directory containing all the subdirectories
-main_directory = '/lustre/orion/gen150/world-shared/abby-summer24/nawsdatasets/degrees'
+main_directory = '/lustre/orion/gen150/world-shared/abby-summer24/nawsdatasets/degree_test'
 
 # Process each subdirectory and generate CSV and PNG files
 process_directory(main_directory)

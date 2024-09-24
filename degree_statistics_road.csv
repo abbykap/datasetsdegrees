@@ -1,0 +1,12 @@
+filename,max_degree,min_degree,avg_degree
+europe_osm.mtx,13,1,2.1234538375595324
+germany_osm.mtx,13,1,2.1420637301825423
+belgium_osm.mtx,10,1,2.150801883028804
+road_usa.mtx,9,1,2.4098128281182882
+roadNet-PA.mtx,9,1,2.8341316726894417
+asia_osm.mtx,9,1,2.1273301766574284
+netherlands_osm.mtx,7,1,2.202599553929105
+roadNet-CA.mtx,12,1,2.8155898160294646
+road_central.mtx,8,1,2.4050041557140074
+italy_osm.mtx,9,1,2.0979541891392093
+roadNet-TX.mtx,12,1,2.785182007323629
