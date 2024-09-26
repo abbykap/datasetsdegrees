@@ -1,0 +1,4 @@
+filename,max_degree,min_degree,avg_degree
+email-EuAll.mtx,7636,1,3.167592962664113
+wiki-Talk.mtx,100032,1,4.1943212975356925
+email-Enron.mtx,1383,1,10.020222391802028

@@ -1,0 +1,6 @@
+filename,max_degree,min_degree,avg_degree
+delaunay_n13.mtx,12,3,5.992919921875
+delaunay_n21.mtx,23,3,5.9999542236328125
+delaunay_n22.mtx,23,3,5.999979496002197
+delaunay_n24.mtx,26,3,5.999994397163391
+delaunay_n23.mtx,28,3,5.999990463256836

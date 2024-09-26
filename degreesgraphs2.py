@@ -20,7 +20,6 @@ def count_degrees(file_path):
             if len(parts) < 2:
                 print(f"Skipping invalid line in {file_path}: {line.strip()}")
                 continue
-
             # Process the actual data lines (assuming they have node1, node2, and optional weight)
             u, v, *_ = line.split()  # Read node1 and node2, ignore any extra columns like weight
             u, v = int(u), int(v)    # Convert node IDs to integers
@@ -39,7 +38,7 @@ def count_degrees(file_path):
     return max_degree, min_degree, avg_degree
 
 
-def process_single_directory(directory_path):
+def process_multiple_files(directory_path):
     """Process all edge list files in the specified directory and return degrees."""
     results = {}  # To store max, min, and avg degree for each file
     
@@ -76,46 +75,50 @@ def write_to_csv(results, output_file):
                 'avg_degree': degree_info['avg_degree']
             })
 
+def process_directory(main_directory):
+    """Process all subdirectories in the main directory."""
+    for subdir in os.listdir(main_directory):
+        subdir_path = os.path.join(main_directory, subdir)
 
-def process_directory(directory):
-    """Process a single directory."""
-    print(f"\nProcessing directory: {directory}")
+        # Ensure it's a directory
+        if os.path.isdir(subdir_path):
+            print(f"\nProcessing directory: {subdir}")
 
-    # Output CSV and PNG file names based on the directory name
-    output_csv = f'degree_statistics_{os.path.basename(directory)}.csv'
-    output_png = f'degree_statistics_{os.path.basename(directory)}.png'
+            # Output CSV and PNG file names based on the subdirectory name
+            output_csv = f'degree_statistics_{subdir}.csv'
+            output_png = f'degree_statistics_{subdir}.png'
 
-    # Process all .mtx files in the directory
-    degree_stats = process_single_directory(directory)
+            # Process all .mtx files in the current subdirectory
+            degree_stats = process_multiple_files(subdir_path)
 
-    # Write the results to a CSV file
-    write_to_csv(degree_stats, output_csv)
+            # Write the results to a CSV file
+            write_to_csv(degree_stats, output_csv)
 
-    # Create and save the bar chart
-    df = pd.DataFrame(degree_stats).T
-    df.index.name = 'filename'
+            # Create and save the bar chart
+            df = pd.DataFrame(degree_stats).T
+            df.index.name = 'filename'
 
-    fig, ax = plt.subplots(figsize=(10, 6))
-    df[['min_degree', 'max_degree', 'avg_degree']].plot(kind='bar', ax=ax)
+            fig, ax = plt.subplots(figsize=(10, 6))
+            df[['min_degree', 'max_degree', 'avg_degree']].plot(kind='bar', ax=ax)
 
-    # Adding labels and title
-    ax.set_ylabel('Degree')
-    ax.set_title(f'Min, Max, and Avg Degree for Each File in {os.path.basename(directory)}')
-    ax.set_xlabel('File')
+            # Adding labels and title
+            ax.set_ylabel('Degree')
+            ax.set_title(f'Min, Max, and Avg Degree for Each File in {subdir}')
+            ax.set_xlabel('File')
 
-    # Rotate the x-axis labels for better readability
-    plt.xticks(rotation=45, ha='right')
+            # Rotate the x-axis labels for better readability
+            plt.xticks(rotation=45, ha='right')
 
-    # Show and save the plot
-    plt.tight_layout()
-    plt.savefig(output_png)  # Save the plot to a PNG file
-    plt.show()
+            # Show and save the plot
+            plt.tight_layout()
+            plt.savefig(output_png)  # Save the plot to a PNG file
+            plt.show()
 
-    print(f"Results written to {output_csv} and plot saved to {output_png}")
+            print(f"Results written to {output_csv} and plot saved to {output_png}")
 
 
-# Specify the single directory you want to process
-directory = '/lustre/orion/gen150/world-shared/abby-summer24/nawsdatasets/degrees/social'
+# Main directory containing all the subdirectories
+main_directory = '/lustre/orion/gen150/world-shared/abby-summer24/nawsdatasets/degrees/powersystem'
 
-# Process the specified directory and generate CSV and PNG files
-process_directory(directory)
+# Process each subdirectory and generate CSV and PNG files
+process_directory(main_directory)
